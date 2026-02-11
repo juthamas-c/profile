@@ -4,83 +4,164 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Juthamas | Personal Website</title>
+
+  <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B27M3HSFBB"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-B27M3HSFBB');
+    </script>
+
+
+
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg: #f8f9fa;
-      --text: #1e1e2f;
-      --primary: #1f6feb;
-      --card: #ffffff;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1e1e2f;
-        --text: #f1f1f1;
-        --primary: #58a6ff;
-        --card: #2c2c3a;
-      }
+      --primary: #38bdf8;
+      --accent: #6366f1;
+      --text: #f1f5f9;
+      --card: rgba(255, 255, 255, 0.05);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Outfit', sans-serif;
-      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       padding: 2rem;
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #0f172a, #111827);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
     }
 
     header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .profile-photo {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1.2rem;
+      border: 4px solid var(--primary);
+      box-shadow: 0 0 25px rgba(56,189,248,0.5);
+      transition: 0.4s ease;
+    }
+
+    .profile-photo:hover {
+      transform: scale(1.05);
     }
 
     header h1 {
-      font-size: 2.5rem;
-      color: var(--primary);
-      animation: fadeInDown 0.6s ease-out;
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
     }
 
     header p {
-      font-size: 1.2rem;
-      opacity: 0.8;
-      animation: fadeInDown 1s ease-out;
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+
+    .section {
+      max-width: 950px;
+      margin: auto;
     }
 
     .card {
       background: var(--card);
-      border-radius: 16px;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
       padding: 2rem;
-      margin: 1rem auto;
-      max-width: 800px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: all 0.8s cubic-bezier(.17,.67,.83,.67);
+      opacity: 0;
+    }
+
+    .slide-left { transform: translateX(-80px); }
+    .slide-right { transform: translateX(80px); }
+
+    .card.visible {
+      transform: translateX(0);
+      opacity: 1;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(56,189,248,0.3);
     }
 
     h2 {
       color: var(--primary);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
     }
 
-    ul {
-      list-style-type: none;
-      padding-left: 0;
+    ul { list-style-type: none; }
+
+    ul li {
+      margin-bottom: 0.6rem;
     }
 
     ul li::before {
-      content: "✓";
+      content: "▹";
+      color: var(--accent);
+      margin-right: 0.6rem;
+    }
+
+    .project-item {
+      padding: 1.2rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    .project-item:hover {
+      background: rgba(56,189,248,0.08);
+      transform: translateY(-5px);
+    }
+
+    .project-title {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .impact {
       color: var(--primary);
-      margin-right: 0.5rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
     }
 
     a {
@@ -95,54 +176,101 @@
       opacity: 0.6;
     }
 
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 </head>
+
 <body>
+
   <header>
+    <img src="profile-pic.jpg" alt="Juthamas Chaiprem" class="profile-photo" />
     <h1>Hello, I'm Juthamas Chaiprem</h1>
-    <p> Cornell MBA | Artificial Intelligence </p> 
-      <p> Public Speaker | Optimized Supply Chain</p>
+    <p>Cornell MBA | Artificial Intelligence</p>
+    <p>Public Speaker | Optimized Supply Chain</p>
   </header>
 
-  <div class="card">
-    <h2>About Me</h2>
-    <p>
-      I'm passionate about creating impact through technology. With an MBA from Cornell and a background in system analysis and operations, I aim to bridge the gap between users and products to deliver meaningful solutions.
-    </p>
-  </div>
+  <div class="section">
 
-  <div class="card">
-    <h2>Skills & Interests</h2>
-    <ul>
-      <li>Product Management & Strategy</li>
-      <li>Sales Operations</li>     
-      <li>Artificial Intelligence</li>      
-      <li>System & Business Analysis</li>
-      <li>Supply Chain Management</li>
-      <li>Human-Centered Design</li>
-    <li>Public Speaking & Communication</li>
-    </ul>
-  </div>
+    <div class="card slide-left">
+      <h2>About Me</h2>
+      <p>
+        I'm passionate about creating impact through technology. With an MBA from Cornell and a background in system analysis and operations, I bridge the gap between users and products to deliver meaningful, data-driven solutions.
+      </p>
+    </div>
 
-  <div class="card">
-    <h2>Contact Me</h2>
-   <!-- <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p> -->
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/juthamas-chaiprem-730836106/" target="https://www.linkedin.com/in/juthamas-chaiprem-730836106/">linkedin</a></p>
-  <!--   <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p> -->
+    <div class="card slide-right">
+      <h2>Skills & Interests</h2>
+      <ul>
+        <li>Prompt Engineering</li>
+        <li>Product Management & Strategy</li>
+        <li>Operations Automation</li>
+        <li>Artificial Intelligence</li>
+        <li>System & Business Analysis</li>
+        <li>Supply Chain Management</li>
+        <li>Human-Centered Design</li>
+        <li>Public Speaking & Communication</li>
+      </ul>
+    </div>
+
+    <div class="card slide-left">
+      <h2>Past Projects</h2>
+
+      <div class="project-item">
+        <div class="project-title">Data Conversion Script</div>
+        <p>Built an automated data transformation tool to standardize multiple data formats and eliminate manual processing.</p>
+        <div class="impact">Impact: Reduced 3 hours of daily manual work to 3 minutes through automation.</div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-title">Carrier Selection Optimization</div>
+        <p>Developed a decision model to optimize carrier selection based on cost efficiency, service level, and performance metrics.</p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-title">Load Planning</div>
+        <p>Improved logistics efficiency through optimized load planning strategies that maximized capacity utilization and reduced shipping costs.</p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-title">Spa Booking Scheduler</div>
+        <p>Designed an automated booking system to streamline scheduling, reduce manual coordination, and enhance customer experience.</p>
+      </div>
+
+    </div>
+
+    <div class="card slide-right">
+      <h2>Contact Me</h2>
+      <p>
+        LinkedIn:
+        <a href="https://www.linkedin.com/in/juthamas-chaiprem-730836106/" target="_blank">
+          linkedin
+        </a>
+      </p>
+    </div>
+
   </div>
 
   <footer>
-    &copy; 2025 Juthamas 
+    &copy; 2026 Juthamas
   </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+
 </body>
 </html>
