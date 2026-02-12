@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spa Booking Scheduler - Luxury App Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#000;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* ================= VIDEO BACKGROUND ================= */
+.video-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-3;
+filter:brightness(0.55);
+}
+
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(166,124,82,0.5));
+z-index:-2;
+}
+
+/* ================= SECTIONS ================= */
+section{
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+text-align:center;
+}
+
+.section-title{
+font-size:32px;
+margin-bottom:40px;
+color:#f3d9b1;
+}
+
+/* ================= HEADER ================= */
+header{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+header h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+header p{
+max-width:650px;
+margin-bottom:30px;
+font-weight:300;
+}
+
+.btn{
+padding:14px 30px;
+background:#a67c52;
+border-radius:30px;
+text-decoration:none;
+color:#fff;
+font-weight:600;
+transition:0.4s;
+display:inline-block;
+}
+
+.btn:hover{
+box-shadow:0 0 25px rgba(166,124,82,0.8);
+transform:translateY(-3px);
+}
+
+/* ================= FEATURES ================= */
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:20px;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#f3d9b1;
+}
+
+/* ================= PHONE MOCKUPS ================= */
+.screens{
+display:flex;
+flex-wrap:wrap;
+gap:50px;
+justify-content:center;
+}
+
+.phone{
+width:260px;
+height:540px;
+background:#111;
+border-radius:40px;
+padding:15px;
+box-shadow:0 20px 50px rgba(0,0,0,0.6);
+transition:0.4s;
+}
+
+.phone:hover{
+transform:scale(1.05);
+}
+
+.screen{
+background:#f9f6f2;
+height:100%;
+border-radius:30px;
+padding:15px;
+display:flex;
+flex-direction:column;
+font-size:12px;
+color:#333;
+}
+
+.status{
+display:flex;
+justify-content:space-between;
+font-size:10px;
+color:#777;
+margin-bottom:10px;
+}
+
+.app-title{
+font-weight:600;
+font-size:14px;
+margin-bottom:15px;
+color:#a67c52;
+}
+
+/* Service Cards */
+.service{
+background:#fff;
+padding:10px;
+border-radius:15px;
+margin-bottom:10px;
+box-shadow:0 5px 10px rgba(0,0,0,0.05);
+}
+
+.service h4{
+font-size:13px;
+margin-bottom:3px;
+}
+
+/* Therapist Profile */
+.therapist{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+.therapist img{
+width:40px;
+height:40px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.rating{
+color:#ffb400;
+font-size:10px;
+}
+
+/* Calendar */
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:4px;
+margin-bottom:10px;
+text-align:center;
+font-size:10px;
+}
+
+.date{
+background:#f3e7da;
+padding:6px;
+border-radius:6px;
+}
+
+.active{
+background:#a67c52;
+color:#fff;
+}
+
+/* Time Slots */
+.times{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+margin-bottom:10px;
+}
+
+.time{
+background:#eee;
+padding:5px 8px;
+border-radius:10px;
+font-size:10px;
+}
+
+.time.active{
+background:#a67c52;
+color:#fff;
+}
+
+/* Payment */
+.payment-card{
+background:#fff;
+padding:10px;
+border-radius:15px;
+margin-bottom:10px;
+}
+
+.input{
+background:#eee;
+padding:8px;
+border-radius:10px;
+font-size:11px;
+margin-bottom:10px;
+}
+
+/* Buttons */
+.primary{
+margin-top:auto;
+padding:10px;
+background:#a67c52;
+color:#fff;
+border:none;
+border-radius:20px;
+font-size:12px;
+cursor:pointer;
+}
+
+/* Footer */
+footer{
+padding:60px 20px;
+background:rgba(0,0,0,0.6);
+text-align:center;
+}
+</style>
+</head>
+<body>
+
+<!-- Video Background -->
+<video autoplay muted loop playsinline class="video-bg">
+<source src="https://cdn.coverr.co/videos/coverr-waterfall-in-the-jungle-6994/1080p.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<header>
+<h1>Spa Booking Scheduler</h1>
+<p>Luxury spa booking experience designed with calm aesthetics, seamless flow, and intuitive mobile interaction. Let's take a look at some of the key features and designs below.</p>
+</header>
+
+<section>
+<h2 class="section-title">Key Features</h2>
+<div class="features">
+<div class="card">
+<h3>Smart Scheduling</h3>
+<p>Real-time availability with intuitive date & time selection.</p>
+</div>
+<div class="card">
+<h3>Therapist Profiles</h3>
+<p>View ratings, specialties, and experience before booking.</p>
+</div>
+<div class="card">
+<h3>Secure Checkout</h3>
+<p>Fast and encrypted payment experience.</p>
+</div>
+<div class="card">
+<h3>Booking Confirmation</h3>
+<p>Instant confirmation with appointment summary.</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2 class="section-title">Problem & Strategy</h2>
+<p style="max-width:800px;margin:auto;">
+Many boutique spas rely on manual booking coordination,
+leading to scheduling conflicts and revenue leakage.
+This project demonstrates how a digital booking flow
+can streamline therapist allocation, reduce no-shows,
+and enhance customer experience.
+</p>
+</section>
+
+
+<section>
+<h2 class="section-title">Detailed App Screens</h2>
+<div class="screens">
+    
+
+
+<!-- HOME SCREEN -->
+<div class="phone">
+<div class="screen">
+<div class="status"><span>9:41</span><span>🔋100%</span></div>
+<div class="app-title">Good Morning, Emma</div>
+
+<div class="service">
+<h4>Swedish Massage</h4>
+<p>60 mins • $80</p>
+</div>
+
+<div class="service">
+<h4>Hot Stone Therapy</h4>
+<p>75 mins • $95</p>
+</div>
+
+<div class="service">
+<h4>Facial Treatment</h4>
+<p>45 mins • $65</p>
+</div>
+
+<button class="primary">Book Appointment</button>
+</div>
+</div>
+
+
+
+<!-- BOOKING SCREEN -->
+<div class="phone">
+<div class="screen">
+<div class="status"><span>9:42</span><span>🔋95%</span></div>
+<div class="app-title">Select Date & Time</div>
+
+<div class="calendar">
+<div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+<div class="date">12</div>
+<div class="date active">13</div>
+<div class="date">14</div>
+<div class="date">15</div>
+<div class="date">16</div>
+<div class="date">17</div>
+<div class="date">18</div>
+</div>
+
+<div class="times">
+<div class="time">10:00</div>
+<div class="time active">11:30</div>
+<div class="time">1:00</div>
+<div class="time">3:30</div>
+</div>
+
+<button class="primary">Confirm Slot</button>
+</div>
+</div>
+
+<!-- THERAPIST SCREEN -->
+<div class="phone">
+<div class="screen">
+<div class="status"><span>9:44</span><span>🔋93%</span></div>
+<div class="app-title">Choose Therapist</div>
+
+<div class="therapist">
+<img src="https://randomuser.me/api/portraits/women/44.jpg">
+<div>
+<strong>Anna Lee</strong>
+<div class="rating">★★★★★</div>
+</div>
+</div>
+
+<div class="therapist">
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
+<div>
+<strong>David Kim</strong>
+<div class="rating">★★★★☆</div>
+</div>
+</div>
+
+<button class="primary">Select Therapist</button>
+</div>
+</div>
+
+<!-- PAYMENT SCREEN -->
+<div class="phone">
+<div class="screen">
+<div class="status"><span>9:45</span><span>🔋90%</span></div>
+<div class="app-title">Payment</div>
+
+<div class="payment-card">
+<p>Hot Stone Therapy</p>
+<strong>$95</strong>
+</div>
+
+<div class="input">**** **** **** 4589</div>
+
+<button class="primary">Pay Now</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer id="contact">
+<h2>Let's Work Together</h2>
+<p>Interested in collaborating or viewing the full case study?</p>
+<br>
+<a href="mailto:your@email.com" class="btn">Contact Me</a>
+</footer>
+
+</body>
+</html>
