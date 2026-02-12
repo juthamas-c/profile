@@ -15,19 +15,21 @@
 
   <!-- SEO Meta Tags -->
   <title>Juthamas Chaiprem | AI &amp; Supply Chain Optimization</title>
-  <meta name="description" content="Juthamas Chaiprem – Cornell MBA, AI enthusiast, public speaker, and supply chain optimizer. Projects include data automation, load planning, and optimized carrier selection.">
-  <meta name="keywords" content="Juthamas Chaiprem, AI, Artificial Intelligence, Cornell MBA, Operations, Supply Chain, Data Automation, Product Management, Load Planning, Juthamas Portfolio, Juthamas Chaiprem Portfolio, Juthamas Chaiprem Profile">
-  <meta name="robots" content="index, follow">
+  <meta name="description" content="Juthamas Chaiprem – Cornell MBA, AI enthusiast, public speaker, and supply chain optimizer. Projects include data automation, load planning, and optimized carrier selection." />
+  <meta name="keywords" content="Juthamas Chaiprem, AI, Artificial Intelligence, Cornell MBA, Operations, Supply Chain, Data Automation, Product Management, Load Planning, Juthamas Portfolio, Juthamas Chaiprem Portfolio, Juthamas Chaiprem Profile" />
+  <meta name="robots" content="index, follow" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Juthamas Chaiprem">
-  <meta property="og:description" content="Cornell MBA | AI | Operations & Supply Chain Expert. View projects including automation and optimization.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://juthamas-c.github.io/profile/">
-  <meta property="og:image" content="profile-pic.jpg">
+  <meta property="og:title" content="Juthamas Chaiprem" />
+  <meta property="og:description" content="Cornell MBA | AI | Operations & Supply Chain Expert. View projects including automation and optimization." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://juthamas-c.github.io/profile/" />
+  <meta property="og:image" content="profile-pic.jpg" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -270,7 +272,7 @@
       box-shadow:0 0 15px rgba(0,240,255,0.6);
     }
 
-    a{ text-decoration:none; }
+    a{ text-decoration:none; color:inherit; }
 
     footer{
       text-align:center;
@@ -287,14 +289,15 @@
   <!-- Global Navbar -->
   <nav class="nav">
     <a class="nav-link" href="index.html" data-route="index.html">Home</a>
+    <a class="nav-link" href="index.html#research" data-route="index.html#research">Research</a>
     <a class="nav-link" href="spa-case-study.html" data-route="spa-case-study.html">Spa Case Study</a>
-    <a class="nav-link" href="#contact">Contact</a>
+    <a class="nav-link" href="#contact" data-route="#contact">Contact</a>
   </nav>
 
   <canvas id="network"></canvas>
 
   <header>
-    <img src="profile-pic.jpg" alt="Profile photo of Juthamas Chaiprem" class="profile-photo"/>
+    <img src="profile-pic.jpg" alt="Profile photo of Juthamas Chaiprem" class="profile-photo" />
     <h1>Juthamas Chaiprem</h1>
     <div class="subtitle">
       AI-driven Supply Chain Optimization Professional with 7 years of experience 
@@ -364,6 +367,31 @@
     </div>
   </section>
 
+  <!-- Research Collaborations -->
+  <section class="section" id="research">
+    <div class="card">
+      <h2>Research Collaborations</h2>
+
+      <div class="project-item">
+        <div class="project-title">ThaiBev Inventory Flow Management</div>
+        <div class="impact">Optimizing inventory flows and logistics across large-scale beverage networks.</div>
+        <a class="view-btn" href="https://cmkl.ac.th/projects-research/thaibev-inventory-flow-management" target="_blank" rel="noopener noreferrer">View Project →</a>
+      </div>
+
+      <div class="project-item">
+        <div class="project-title">Automation of Bottle Screening for Recycling</div>
+        <div class="impact">Computer vision automation to improve recycling accuracy and throughput.</div>
+        <a class="view-btn" href="https://cmkl.ac.th/projects-research/thaibev-automation-of-bottle-screening-for-recycling" target="_blank" rel="noopener noreferrer">View Project →</a>
+      </div>
+
+      <div class="project-item">
+        <div class="project-title">Smart Promotion</div>
+        <div class="impact">Data-driven promotion optimization to lift sales while managing cost and stock.</div>
+        <a class="view-btn" href="https://cmkl.ac.th/projects-research/thaibev-smart-promotion" target="_blank" rel="noopener noreferrer">View Project →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Skillsets -->
   <section class="section">
     <div class="card">
@@ -383,7 +411,6 @@
         <div class="skill-badge">Supply Chain Optimization</div>
         <div class="skill-badge">Product Management</div>
         <div class="skill-badge">User Stories</div>
-        <div class="skill-badge">User Experience</div>
         <div class="skill-badge">Website Development</div>
       </div>
     </div>
@@ -399,9 +426,7 @@
         target="_blank"
         rel="noopener noreferrer"
         class="linkedin-btn"
-      >
-        View My LinkedIn
-      </a>
+      >View My LinkedIn</a>
     </div>
   </section>
 
@@ -410,7 +435,7 @@
   </footer>
 
   <script>
-    // Background network animation
+    // Background network animation + resize
     const canvas = document.getElementById("network");
     const ctx = canvas.getContext("2d");
 
@@ -448,31 +473,59 @@
     animate();
   </script>
 
-  <!-- Navbar behavior (active link + smooth scroll) -->
+  <!-- Navbar behavior (active link + hash-aware + smooth scroll) -->
   <script>
     (function(){
-      // Determine file name reliably (supports GitHub Pages and local)
-      const path = window.location.pathname;
-      const last = (path.split('/').pop() || 'index.html').toLowerCase();
+      const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const hash = window.location.hash.toLowerCase();
 
-      document.querySelectorAll('.nav .nav-link[data-route]').forEach(link=>{
-        if ((link.dataset.route || '').toLowerCase() === last){
-          link.classList.add('active');
-        }
-        // Special case: if URL ends with "/" treat as index.html
-        if ((last === '' || last === '/') && link.dataset.route.toLowerCase() === 'index.html'){
+      // Set active tab
+      document.querySelectorAll('.nav .nav-link').forEach(link => {
+        const route = (link.getAttribute('data-route') || '').toLowerCase();
+
+        const matchesFile = route === path;
+        const matchesHash =
+          (route === hash) ||
+          (route === path + hash) ||
+          (route === 'index.html#research' && path === 'index.html' && hash === '#research');
+
+        if (matchesFile || matchesHash || (path === '' && route === 'index.html')) {
           link.classList.add('active');
         }
       });
 
-      // Smooth scroll for #anchors on same page
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', function(e){
-          const id = a.getAttribute('href').slice(1);
-          const el = document.getElementById(id);
-          if (el){
+      // Smooth scroll helper
+      function smoothScrollTo(id){
+        const el = document.getElementById(id);
+        if (el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      }
+
+      // Handle clicking Research when already on index.html
+      const researchLink = document.querySelector('.nav .nav-link[data-route="index.html#research"]');
+      if (researchLink){
+        researchLink.addEventListener('click', function(e){
+          const current = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+          if (current === 'index.html'){
             e.preventDefault();
-            el.scrollIntoView({behavior:'smooth', block:'start'});
+            history.replaceState(null, '', '#research');
+            smoothScrollTo('research');
+            document.querySelectorAll('.nav .nav-link').forEach(l=>l.classList.remove('active'));
+            researchLink.classList.add('active');
+          }
+        });
+      }
+
+      // Smooth scroll for same-page anchors like #contact
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const id = a.getAttribute('href').slice(1);
+          if (document.getElementById(id)){
+            e.preventDefault();
+            history.replaceState(null,'', '#' + id);
+            smoothScrollTo(id);
+            document.querySelectorAll('.nav .nav-link').forEach(l=>l.classList.remove('active'));
+            const navMatch = document.querySelector('.nav .nav-link[data-route="#' + id + '"]');
+            if (navMatch) navMatch.classList.add('active');
           }
         });
       });
