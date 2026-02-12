@@ -10,14 +10,15 @@
     gtag('config', 'G-B27M3HSFBB');
   </script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spa Booking Scheduler - Luxury App Case Study</title>
-  <meta name="description" content="A luxury spa booking app case study featuring smart scheduling, therapist profiles, secure checkout, and a refined visual experience.">
-  <link rel="canonical" href="https://juthamas-c.github.io/profile/spa-case-study.html">
+  <meta name="description" content="A luxury spa booking app case study featuring smart scheduling, therapist profiles, secure checkout, and a refined visual experience." />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
   <style>
     *{
@@ -74,6 +75,15 @@
     .nav .nav-link.active{ color:#fff; text-shadow:0 0 10px #00f7ff; }
     .nav .nav-link.active::after{ width:100%; }
 
+    /* ================= Video Background ================= */
+    .video-bg{
+      position: fixed;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-3;
+    }
 
     /* DARK GOLD OVERLAY */
     .overlay {
@@ -128,20 +138,56 @@
       font-weight:300;
     }
 
+    /* ======= Unified Buttons ======= */
     .btn{
-      padding:14px 30px;
-      background:#a67c52;
-      border-radius:30px;
-      text-decoration:none;
-      color:#fff;
-      font-weight:600;
-      transition:0.4s;
-      display:inline-block;
-    }
+      --btn-bg: #a67c52;
+      --btn-bg-hover: #b5885e;
+      --btn-text: #ffffff;
+      --btn-shadow: rgba(166,124,82,0.85);
 
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+
+      padding:14px 28px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      text-decoration:none;
+      border:none;
+      border-radius:30px;
+      font-weight:600;
+      font-size:14px;
+      letter-spacing:.2px;
+      cursor:pointer;
+
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, opacity .25s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
     .btn:hover{
-      box-shadow:0 0 25px rgba(166,124,82,0.8);
-      transform:translateY(-3px);
+      background: var(--btn-bg-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 0 28px var(--btn-shadow);
+    }
+    .btn:active{
+      transform: translateY(-1px) scale(0.99);
+      box-shadow: 0 0 16px var(--btn-shadow);
+    }
+    .btn:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+      transform:none;
+      box-shadow:none;
+    }
+    .btn--sm{ padding:10px 18px; font-size:12px; border-radius:24px; }
+    .btn--lg{ padding:16px 34px; font-size:16px; border-radius:34px; }
+    .btn--ghost{
+      --btn-bg: transparent;
+      --btn-bg-hover: rgba(255,255,255,0.12);
+      --btn-text: #fff;
+      --btn-shadow: rgba(255,255,255,0.35);
+      border:1px solid rgba(255,255,255,0.25);
+      box-shadow:none;
     }
 
     /* ================= FEATURES ================= */
@@ -201,6 +247,14 @@
       color:#333;
     }
 
+    /* 👇 Ensure the action button is at the bottom and full width */
+    .screen .btn{
+      align-self:stretch;         /* full width of the inner content area */
+    }
+    .screen .btn:last-child{
+      margin-top:auto;            /* push to the bottom of the screen */
+    }
+
     .status{
       display:flex;
       justify-content:space-between;
@@ -223,6 +277,7 @@
       border-radius:15px;
       margin-bottom:10px;
       box-shadow:0 5px 10px rgba(0,0,0,0.05);
+      text-align:left;
     }
 
     .service h4{
@@ -236,6 +291,7 @@
       align-items:center;
       gap:10px;
       margin-bottom:10px;
+      text-align:left;
     }
 
     .therapist img{
@@ -297,6 +353,7 @@
       padding:10px;
       border-radius:15px;
       margin-bottom:10px;
+      text-align:left;
     }
 
     .input{
@@ -305,18 +362,7 @@
       border-radius:10px;
       font-size:11px;
       margin-bottom:10px;
-    }
-
-    /* Buttons */
-    .primary{
-      margin-top:auto;
-      padding:10px;
-      background:#a67c52;
-      color:#fff;
-      border:none;
-      border-radius:20px;
-      font-size:12px;
-      cursor:pointer;
+      text-align:left;
     }
 
     /* Footer */
@@ -331,11 +377,16 @@
 
   <!-- Global Navbar -->
   <nav class="nav">
-    <a class="nav-link" href="index.html" data-route="index.html">Home</a>
-    <a class="nav-link" href="spa-case-study.html" data-route="spa-case-study.html">Spa Case Study</a>
-    <a class="nav-link" href="#contact">Contact</a>
+    <a href="index.html" class="nav-link" data-route="index.html">Home</a>
+    <a href="index.html#research" class="nav-link" data-route="index.html#research">Research</a>
+    <a href="spa-case-study.html" class="nav-link" data-route="spa-case-study.html">Spa Case Study</a>
+    <a href="#contact" class="nav-link" data-route="#contact">Contact</a>
   </nav>
 
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="https://cdn.coverr.co/videos/coverr-waterfall-in-the-jungle-6994/1080p.mp4" type="video/mp4">
+  </video>
   <div class="overlay"></div>
 
   <header>
@@ -396,7 +447,7 @@
             <h4>Facial Treatment</h4>
             <p>45 mins • $65</p>
           </div>
-          <button class="primary">Book Appointment</button>
+          <button class="btn btn--sm">Book Appointment</button>
         </div>
       </div>
 
@@ -421,7 +472,7 @@
             <div class="time">1:00</div>
             <div class="time">3:30</div>
           </div>
-          <button class="primary">Confirm Slot</button>
+          <button class="btn btn--sm">Confirm Slot</button>
         </div>
       </div>
 
@@ -431,20 +482,20 @@
           <div class="status"><span>9:44</span><span>🔋93%</span></div>
           <div class="app-title">Choose Therapist</div>
           <div class="therapist">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Therapist Anna Lee">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Anna Lee">
             <div>
               <strong>Anna Lee</strong>
               <div class="rating">★★★★★</div>
             </div>
           </div>
           <div class="therapist">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Therapist David Kim">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Kim">
             <div>
               <strong>David Kim</strong>
               <div class="rating">★★★★☆</div>
             </div>
           </div>
-          <button class="primary">Select Therapist</button>
+          <button class="btn btn--sm">Select Therapist</button>
         </div>
       </div>
 
@@ -458,7 +509,7 @@
             <strong>$95</strong>
           </div>
           <div class="input">**** **** **** 4589</div>
-          <button class="primary">Pay Now</button>
+          <button class="btn btn--sm">Pay Now</button>
         </div>
       </div>
     </div>
@@ -467,35 +518,47 @@
   <footer id="contact">
     <h2>Let's Work Together</h2>
     <p>Interested in collaborating or viewing the full case study?</p>
-    <br>
-    <a href="https://www.linkedin.com/in/juthamas-chaiprem-730836106/" target="_blank" rel="noopener noreferrer" class="btn">Contact Me</a>
+    <br />
+    <a href="https://www.linkedin.com/in/juthamas-chaiprem-730836106/" class="btn btn--lg">Contact Me</a>
   </footer>
 
-  <!-- Navbar behavior (active link + smooth scroll) -->
+  <!-- Navbar behavior (active link + hash-aware + smooth scroll) -->
   <script>
     (function(){
-      // Determine file name reliably (supports GitHub Pages and local)
-      const path = window.location.pathname;
-      const last = (path.split('/').pop() || 'index.html').toLowerCase();
+      const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const hash = window.location.hash.toLowerCase();
 
-      document.querySelectorAll('.nav .nav-link[data-route]').forEach(link=>{
-        if ((link.dataset.route || '').toLowerCase() === last){
-          link.classList.add('active');
-        }
-        // Special case: if URL ends with "/" treat as index.html
-        if (last === '' && link.dataset.route.toLowerCase() === 'index.html'){
+      // Set active tab
+      document.querySelectorAll('.nav .nav-link').forEach(link => {
+        const route = (link.getAttribute('data-route') || '').toLowerCase();
+
+        const matchesFile = route === path;
+        const matchesHash =
+          (route === hash) ||
+          (route === path + hash) ||
+          (route === 'index.html#research' && path === 'index.html' && hash === '#research');
+
+        if (matchesFile || matchesHash || (path === '' && route === 'index.html')) {
           link.classList.add('active');
         }
       });
 
-      // Smooth scroll for #anchors on same page
+      // Smooth scroll for same-page anchors like #contact
+      function smoothScrollTo(id){
+        const el = document.getElementById(id);
+        if (el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      }
+
       document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', function(e){
+        a.addEventListener('click', (e)=>{
           const id = a.getAttribute('href').slice(1);
-          const el = document.getElementById(id);
-          if (el){
+          if (document.getElementById(id)){
             e.preventDefault();
-            el.scrollIntoView({behavior:'smooth', block:'start'});
+            history.replaceState(null,'', '#' + id);
+            smoothScrollTo(id);
+            document.querySelectorAll('.nav .nav-link').forEach(l=>l.classList.remove('active'));
+            const navMatch = document.querySelector('.nav .nav-link[data-route="#' + id + '"]');
+            if (navMatch) navMatch.classList.add('active');
           }
         });
       });
@@ -504,3 +567,4 @@
 
 </body>
 </html>
+``
