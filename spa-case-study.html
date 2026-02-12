@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B27M3HSFBB"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-B27M3HSFBB');
+    </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spa Booking Scheduler - Luxury App Case Study</title>
@@ -20,25 +29,7 @@ color:#fff;
 overflow-x:hidden;
 }
 
-/* ================= VIDEO BACKGROUND ================= */
-.video-bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-3;
-filter:brightness(0.55);
-}
 
-.overlay{
-position:fixed;
-width:100%;
-height:100%;
-background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(166,124,82,0.5));
-z-index:-2;
-}
 
 /* ================= SECTIONS ================= */
 section{
@@ -90,6 +81,19 @@ display:inline-block;
 .btn:hover{
 box-shadow:0 0 25px rgba(166,124,82,0.8);
 transform:translateY(-3px);
+}
+
+/* DARK GOLD OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.7),
+        rgba(166,124,82,0.5)
+    );
+    z-index: -2;
 }
 
 /* ================= FEATURES ================= */
