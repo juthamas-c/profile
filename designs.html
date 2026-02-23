@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B27M3HSFBB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-B27M3HSFBB');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Designs | Juthamas Chaiprem</title>
+  <meta name="description" content="Design portfolio by Juthamas Chaiprem – UX case studies and live prototypes, including a spa scheduler and online shopping experience."/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --primary:#00f0ff;
+      --accent:#7c3aed;
+      --bg:#0a0f1f;
+      --card:rgba(255,255,255,0.05);
+      --muted:rgba(255,255,255,0.65);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Outfit',sans-serif;
+      background:radial-gradient(circle at 20% 20%,#111827,#0a0f1f 60%);
+      color:#e2e8f0;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    /* ======= Neon Navbar (shared) ======= */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:28px;
+      padding:16px 10px;
+      background:rgba(0,255,255,0.05);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(0,255,255,0.2);
+      box-shadow: 0 0 20px rgba(0,255,255,0.15);
+    }
+    .nav .nav-link{
+      position:relative;
+      text-decoration:none;
+      color:#00f7ff;
+      font-size:15px;
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+      transition:0.3s ease;
+      padding:4px 0;
+    }
+    .nav .nav-link::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0%;
+      height:2px;
+      background:#00f7ff;
+      box-shadow:0 0 10px #00f7ff, 0 0 20px #00f7ff;
+      transition:0.35s ease;
+    }
+    .nav .nav-link:hover{ color:#ffffff; text-shadow:0 0 8px #00f7ff; }
+    .nav .nav-link:hover::after{ width:100%; }
+    .nav .nav-link.active{ color:#fff; text-shadow:0 0 10px #00f7ff; }
+    .nav .nav-link.active::after{ width:100%; }
+
+    header{
+      text-align:center;
+      padding:4rem 1rem 1.5rem;
+    }
+    header h1{
+      font-size:2.4rem;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    header p{
+      margin-top:12px;
+      color:var(--muted);
+      max-width:800px;
+      margin-left:auto;
+      margin-right:auto;
+      line-height:1.6;
+    }
+
+    /* Grid */
+    .section{
+      max-width:1100px;
+      margin:2rem auto 4rem;
+      padding:0 1rem;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+    }
+    .card{
+      background:var(--card);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      overflow:hidden;
+      transition:.35s ease;
+      display:flex;
+      flex-direction:column;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 0 24px rgba(0,255,255,0.25);
+    }
+    .thumb{
+      width:100%;
+      height:160px;
+      background:#0f1629;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#7aa2ff;
+      font-weight:600;
+      letter-spacing:.4px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .card-body{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+    .title{
+      font-weight:700;
+      color:#eaf7ff;
+      font-size:1.05rem;
+    }
+    .desc{
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.5;
+    }
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:2px;
+    }
+    .tag{
+      font-size:.75rem;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(0,240,255,0.08);
+      border:1px solid rgba(0,240,255,0.25);
+      color:#b5f3ff;
+    }
+    .cta{
+      margin-top:auto;
+    }
+    .btn{
+      display:inline-block;
+      margin-top:6px;
+      padding:10px 16px;
+      border-radius:30px;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      color:#000;
+      font-weight:700;
+      font-size:.9rem;
+      text-decoration:none;
+      transition:.3s ease;
+      box-shadow:0 0 0 rgba(0,0,0,0);
+    }
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 18px rgba(124,58,237,0.55);
+    }
+
+    footer{
+      text-align:center;
+      padding:2rem 1rem 3rem;
+      opacity:.65;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Navbar -->
+  <nav class="nav">
+    <a class="nav-link" href="index.html" data-route="index.html">Home</a>
+    <a class="nav-link" href="index.html#research" data-route="index.html#research">Research</a>
+    <a class="nav-link" href="designs.html" data-route="designs.html">Designs</a>
+    <a class="nav-link" href="index.html#contact" data-route="#contact">Contact</a>
+  </nav>
+
+  <header>
+    <h1>Design Portfolio</h1>
+    <p>UX case studies and live prototypes. </p>
+  </header>
+
+  <main class="section">
+    <div id="designsGrid" class="grid" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    © 2026 Juthamas Chaiprem
+  </footer>
+
+  <!-- Configuration: add/edit designs here -->
+  <script>
+    /**
+     * Add new designs by pushing a new object in this array.
+     * - title:        Card title
+     * - description:  Short summary
+     * - href:         Target link (internal page or external URL)
+     * - cta:          Button label
+     * - tags:         Small badges
+     * - cover:        Optional image path; if omitted, a text thumb shows
+     * - external:     true if href should open in new tab
+     */
+    const DESIGNS = [
+      {
+        title: "Spa Booking Website",
+        description: "Detailed UX case study covering flow, screens, and rationale.",
+        href: "spa-case-study.html",
+        cta: "View Design",
+        tags: ["Scheduler", "Ratings", "Mobile UI"],
+        cover: "", // e.g., "images/spa-case-study-cover.jpg"
+        external: false
+      },
+      {
+        title: "Online Shopping Website",
+        description: "E-commerce shopping flow including product listing, cart, and checkout.",
+        href: "online-shopping.html", // ⬅️ you can create this page (template below) or link to a prototype
+        cta: "View Design",
+        tags: ["E‑commerce", "Web UI", "Mobile UI"],
+        cover: "", // e.g., "images/online-shopping-cover.jpg"
+        external: false
+      }
+    ];
+
+    // Render grid
+    (function renderDesigns(){
+      const grid = document.getElementById('designsGrid');
+      grid.innerHTML = DESIGNS.map(item => {
+        const coverEl = item.cover
+          ? `<div class="thumb"><img src="${item.cover}" alt="${item.title} cover image"/></div>`
+          : `<div class="thumb" role="img" aria-label="${item.title}">${item.title}</div>`;
+
+        const tagsEl = (item.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+        const rel = item.external ? 'rel="noopener noreferrer"' : '';
+        const target = item.external ? 'target="_blank"' : '';
+
+        return `
+          <article class="card">
+            ${coverEl}
+            <div class="card-body">
+              <h3 class="title">${item.title}</h3>
+              <p class="desc">${item.description}</p>
+              <div class="tags">${tagsEl}</div>
+              <div class="cta">
+                <a class="btn" href="${item.href}" ${target} ${rel} aria-label="${item.cta} for ${item.title}">
+                  ${item.cta} →
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    })();
+
+    // Navbar active state
+    (function setActiveNav(){
+      const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      document.querySelectorAll('.nav .nav-link').forEach(link => {
+        const route = (link.getAttribute('data-route') || '').toLowerCase();
+        const matchesFile = route === path;
+        const matchesHash = (route === hash) || (route === path + hash) ||
+                            (route === 'index.html#research' && path === 'index.html' && hash === '#research');
+        if (matchesFile || matchesHash || (path === '' && route === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
